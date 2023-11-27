@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+requires-python = ">=3.11"
+name = "vtex"
+version = "0.1.0"
+dependencies = ["langchain", "openai"]
+
+[project.optional-dependencies]
+dev = ["ruff", "pip-tools", "python-dotenv"]
+
+[tool.pytest.ini_options]
+minversion = "4.3.0"
+addopts = "-rfEX -p pytester --strict-markers"
+python_files = ["test_*.py", "*_test.py"]
+testpaths = ["producer/tests", "consumer/tests"]
+filterwarnings = [
+    "error",
+    "ignore::UserWarning",
+    'ignore:function ham\(\) is deprecated:DeprecationWarning',
+]
+
+[tool.ruff]
+line-length = 85
+select = [
+    "E", # pycodestyle
+    "F", # pyflakesr
+    'B', # flake8-bugbear
+]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "migrations",
+]
+
+ignore = ['RUF012', 'E501', 'F811']
+
+[tool.ruff.pydocstyle]
+convention = "google"
