@@ -20,3 +20,7 @@ dev_dependencies: ## [Development project dependencies]
 build: dev_dependencies
 	source venv/bin/activate && \
 	pip install -r dev-requirements.txt
+
+.PHONY: up
+up:
+	python main.py
